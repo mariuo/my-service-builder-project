@@ -3,12 +3,14 @@ package com.liferay.h7g5.web.internal.portlet;
 import com.liferay.h7g5.model.H7G5Entry;
 import com.liferay.h7g5.model.H7G5Folder;
 import com.liferay.h7g5.service.H7G5EntryLocalService;
+import com.liferay.h7g5.service.H7G5EntryService;
 import com.liferay.h7g5.service.H7G5FolderLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.portlet.GenericPortlet;
 import javax.portlet.Portlet;
@@ -64,12 +66,21 @@ public class H7G5Portlet extends GenericPortlet {
 			h7g5Entry.setDescription(StringUtil.randomString());
 			h7g5Entry.setName(StringUtil.randomString());
 
-			H7G5Entry h7g5EntryEntity =_EntryLocalService.addH7G5Entry(h7g5Entry);
+			_EntryLocalService.addH7G5Entry(h7g5Entry);
 
 			System.out.println(
 				"After adding a new entry, there are now " +
 			_EntryLocalService.getH7G5EntriesCount() + " folders.");
 		
+			try {
+				List<H7G5Entry> entries = _EntryService.findByName(h7g5Entry.getName());
+				for(H7G5Entry obj : entries){
+					System.out.println("After calling EntryService FindByName Method: "+ obj.getName());
+				}
+			} catch (PortalException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	@Reference
@@ -77,4 +88,7 @@ public class H7G5Portlet extends GenericPortlet {
 
 	@Reference
 	private H7G5EntryLocalService _EntryLocalService;
+
+	@Reference
+	private H7G5EntryService _EntryService;
 }
