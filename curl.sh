@@ -32,3 +32,18 @@ curl "$BASE_URL/find-entry-by-h_-d_-n-with-permission-check" \
     -d description="$DESCRIPTION" \
     -d name="$NAME" \
     -d userEmailAddress="$USER_EMAIL"
+
+curl http://localhost:8080/api/jsonws/ohqiwtsfhl.h7g5folder/add-my-custom-h7-g5-folder \
+  -d description="This is where I store all my vacation photos." \
+  -d name="Vacation Photos" \
+  -u test@liferay.com:1
+
+curl http://localhost:8080/api/jsonws/ohqiwtsfhl.h7g5folder/add-my-custom-h7-g5-folder-with-permission-check \
+  -d description="This is where I store all my vacation photos." \
+  -d name="Vacation Photos" \
+  -u test@liferay.com:1
+
+curl http://localhost:8080/api/jsonws/ohqiwtsfhl.h7g5folder/add-my-custom-h7-g5-folder-with-permission-check \
+  -d description="This is where I store all my vacation photos." \
+  -d name="Vacation Photos" \
+  -u userTest@liferay.com:1s

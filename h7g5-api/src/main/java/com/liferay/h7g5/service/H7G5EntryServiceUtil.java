@@ -5,7 +5,11 @@
 
 package com.liferay.h7g5.service;
 
+import com.liferay.h7g5.model.H7G5Entry;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.module.service.Snapshot;
+
+import java.util.List;
 
 /**
  * Provides the remote service utility for H7G5Entry. This utility wraps
@@ -26,6 +30,32 @@ public class H7G5EntryServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.h7g5.service.impl.H7G5EntryServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static List<H7G5Entry> findByH7G5FolderId(long h7g5FolderId)
+		throws PortalException {
+
+		return getService().findByH7G5FolderId(h7g5FolderId);
+	}
+
+	public static H7G5Entry findByH_D_N(
+			long h7g5FolderId, String description, String name)
+		throws com.liferay.h7g5.exception.NoSuchH7G5EntryException,
+			   PortalException {
+
+		return getService().findByH_D_N(h7g5FolderId, description, name);
+	}
+
+	public static H7G5Entry findByKey(String key)
+		throws com.liferay.h7g5.exception.NoSuchH7G5EntryException,
+			   PortalException {
+
+		return getService().findByKey(key);
+	}
+
+	public static List<H7G5Entry> findByName(String name)
+		throws PortalException {
+
+		return getService().findByName(name);
+	}
 
 	/**
 	 * Returns the OSGi service identifier.

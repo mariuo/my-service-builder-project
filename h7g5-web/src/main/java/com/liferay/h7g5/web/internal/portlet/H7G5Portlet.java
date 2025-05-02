@@ -1,7 +1,10 @@
 package com.liferay.h7g5.web.internal.portlet;
 
+import com.liferay.h7g5.model.H7G5Entry;
 import com.liferay.h7g5.model.H7G5Folder;
+import com.liferay.h7g5.service.H7G5EntryLocalService;
 import com.liferay.h7g5.service.H7G5FolderLocalService;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
@@ -49,14 +52,29 @@ public class H7G5Portlet extends GenericPortlet {
 		h7g5Folder.setDescription(StringUtil.randomString());
 		h7g5Folder.setName(StringUtil.randomString());
 
-		_h7G5FolderLocalService.addH7G5Folder(h7g5Folder);
+		H7G5Folder h7g5Folder2 =_h7G5FolderLocalService.addH7G5Folder(h7g5Folder);
 
 		System.out.println(
 			"After adding a new folder, there are now " +
 				_h7G5FolderLocalService.getH7G5FoldersCount() + " folders.");
-	}
+	
+		H7G5Entry h7g5Entry = _EntryLocalService.createH7G5Entry(
+			System.currentTimeMillis());
+
+			h7g5Entry.setDescription(StringUtil.randomString());
+			h7g5Entry.setName(StringUtil.randomString());
+
+			H7G5Entry h7g5EntryEntity =_EntryLocalService.addH7G5Entry(h7g5Entry);
+
+			System.out.println(
+				"After adding a new entry, there are now " +
+			_EntryLocalService.getH7G5EntriesCount() + " folders.");
+		
+		}
 
 	@Reference
 	private H7G5FolderLocalService _h7G5FolderLocalService;
 
+	@Reference
+	private H7G5EntryLocalService _EntryLocalService;
 }

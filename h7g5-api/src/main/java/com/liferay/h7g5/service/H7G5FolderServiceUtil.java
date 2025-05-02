@@ -5,6 +5,8 @@
 
 package com.liferay.h7g5.service;
 
+import com.liferay.h7g5.model.H7G5Folder;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.module.service.Snapshot;
 
 /**
@@ -26,6 +28,19 @@ public class H7G5FolderServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.h7g5.service.impl.H7G5FolderServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static H7G5Folder addMyCustomH7G5Folder(
+		String description, String name) {
+
+		return getService().addMyCustomH7G5Folder(description, name);
+	}
+
+	public static H7G5Folder addMyCustomH7G5FolderWithPermissionCheck(
+			String description, String name)
+		throws PortalException {
+
+		return getService().addMyCustomH7G5FolderWithPermissionCheck(
+			description, name);
+	}
 
 	/**
 	 * Returns the OSGi service identifier.
